@@ -19,7 +19,7 @@ private int multiply(int a, int b) {
 <%
 for (int i = 1; i <= 9; i++) {
 %>
-	<%= 3 + " X " + i + " = " + multiply(3, i) %>
+	<%=  3 + " X " + i + " = " + multiply(3, i)%>
 	<br />
 <%
 }

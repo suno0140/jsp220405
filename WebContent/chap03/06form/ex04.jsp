@@ -30,7 +30,7 @@
 	<input type="password" name="pw" />
 	<input type="submit" />
 </form>
-
+ 
 <h1>type="date"</h1>
 
 <form action="ex05.jsp">

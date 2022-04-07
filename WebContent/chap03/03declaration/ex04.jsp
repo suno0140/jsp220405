@@ -22,7 +22,7 @@ for (int i = 2; i <= 9; i++) {
 		out.print(i + "x" + j + " = " + multiply(i, j));
 		out.print("<br>");
 	}
-}
+} 
 
 %>
 </body>
