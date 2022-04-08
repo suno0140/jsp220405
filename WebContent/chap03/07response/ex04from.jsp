@@ -3,7 +3,9 @@
 <%@ page import="java.util.*"%>
 <%request.setCharacterEncoding("utf-8");%>    
 <%
-//redirection
-String path = "ex03to.jsp";
-response.sendRedirect(path);
+//ex04to.jsp로 데이터 전달
+request.setAttribute("movie", "doctor");
+
+
+response.sendRedirect("ex04to.jsp?age=90");
 %>

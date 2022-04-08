@@ -4,6 +4,6 @@
 <%request.setCharacterEncoding("utf-8");%>    
 <%
 //redirection
-String path = "ex03to.jsp";
-response.sendRedirect(path);
+String location = "https://www.naver.com";
+response.sendRedirect(location);
 %>
