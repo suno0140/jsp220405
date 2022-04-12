@@ -15,6 +15,6 @@ request.setAttribute("singer", list);
 %>
 
 <jsp:forward page="ex04to.jsp">
-	<jsp:param value="doctor" name="jop"/>
+	<jsp:param value="doctor" name="job"/>
 
 </jsp:forward>
