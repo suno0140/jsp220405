@@ -44,7 +44,7 @@ public class Employees {
 		this.birthDate = birthDate;
 	}
 	public void setId(int int1) {
-		// TODO Auto-generated method stub
+		this.id = int1;
 		
 	}
 	

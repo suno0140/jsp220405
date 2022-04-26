@@ -37,7 +37,7 @@ public class S14Servlet16 extends HttpServlet {
 
 		String id = request.getParameter("id");
 		if (id != null) {
-			// 1. db에서 조회
+			// db에서 조회
 			String sql = "SELECT EmployeeID, LastName, FirstName, BirthDate, Photo, Notes "
 					+ "FROM Employees "
 					+ "WHERE EmployeeID = ?";
@@ -46,41 +46,89 @@ public class S14Servlet16 extends HttpServlet {
 			DataSource ds = (DataSource) application.getAttribute("dbpool");
 			
 			try (Connection con = ds.getConnection();
-					PreparedStatement pstmt = con.prepareStatement(sql)){
+					PreparedStatement pstmt = con.prepareStatement(sql)) {
+				
 				pstmt.setInt(1, Integer.parseInt(id));
 				
-				try (ResultSet rs = pstmt.executeQuery()){
+				try (ResultSet rs = pstmt.executeQuery()) {
 					if (rs.next()) {
 						Employees emp = new Employees();
+						
 						emp.setLastName(rs.getString("LastName"));
 						emp.setFirstName(rs.getString("FirstName"));
 						emp.setBirthDate(rs.getString("BirthDate"));
 						emp.setPhoto(rs.getString("Photo"));
 						emp.setNotes(rs.getString("Notes"));
 						emp.setId(rs.getInt("EmployeeID"));
-			
-			// 2. request에 attribute 로 넣고
-			request.setAttribute("employee", emp);
+						
+						// request에 attribute로 넣고
+						request.setAttribute("employee", emp);
+						
 					}
 				}
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
-			
-			
 		}
-		// 3. forward
+		// forward
 		String path = "/WEB-INF/view/chap14/ex10.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String sql = "UPDATE Employees "
+				+ "SET LastName = ?, "
+				+ "    FirstName = ?, "
+				+ "    BirthDate = ?, "
+				+ "    Photo = ?, "
+				+ "    Notes = ? "
+				+ "WHERE EmployeeID = ? ";
+		
+		String lastName = request.getParameter("lastName");
+		String firstName = request.getParameter("firstName");
+		String birthDate = request.getParameter("birthDate");
+		String picture = request.getParameter("pic");
+		String notes = request.getParameter("notes");
+		String id = request.getParameter("id");
+		
+		int result = 0;
+		
+		ServletContext application = getServletContext();
+		DataSource ds = (DataSource) application.getAttribute("dbpool");
+		
+		try (Connection con = ds.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setString(1, lastName);
+			pstmt.setString(2, firstName);
+			pstmt.setString(3, birthDate);
+			pstmt.setString(4, picture);
+			pstmt.setString(5, notes);
+			pstmt.setInt(6, Integer.parseInt(id));
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String location = "S14Servlet16";
+		if (result == 1) {
+			// 잘된 거
+			location += "?success=true";
+		} else {
+			// 잘못 된 거
+			location += "?success=false";
+		}
+		
+		response.sendRedirect(location);
 	}
 
 }
+
+
