@@ -2,6 +2,7 @@ USE w3chools;
 
 SELECT * FROM Customers ORDER BY ContactName; --  조회결과 ContactName 오름차순 정렬
 SELECT * FROM Customers ORDER BY City;
+SELECT * FROM Customers ORDER BY CustomerID;
 
 -- ASC : 오름차순(기본값이라서 생략가능)
 -- DESC : 내림차순
