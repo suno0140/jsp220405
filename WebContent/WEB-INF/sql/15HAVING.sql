@@ -21,10 +21,11 @@ SELECT Country, COUNT(CustomerID) count FROM Customers
 GROUP BY Country
 HAVING count = 
 (
-	SELECT COUNT(CustomerID) count 
-	FROM Customers 
-	ORDER BY count 
-	DESC LIMIT 1
+	SELECT COUNT(CustomerID) count
+	FROM Customers
+    GROUP BY Country
+	ORDER BY count
+	LIMIT 1
 );
 
 

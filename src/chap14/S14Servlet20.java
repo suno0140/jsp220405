@@ -43,7 +43,7 @@ public class S14Servlet20 extends HttpServlet {
 			keyword = "";
 		}
 		
-		keyword = keyword.trim();
+		keyword = keyword.trim(); //스페이스바 빈공간 지워주기
 		keyword = "%" + keyword + "%";
 		
 		String sql = "SELECT CustomerID, CustomerName, City, Country, PostalCode "
