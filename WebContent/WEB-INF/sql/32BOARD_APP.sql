@@ -36,3 +36,4 @@ SET inseted = DATE_SUB(inserted, INTERVAL 1 DAY);
 
 
 SELECT * FROM Reply;
+
