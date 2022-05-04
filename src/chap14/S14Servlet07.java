@@ -59,6 +59,7 @@ public class S14Servlet07 extends HttpServlet {
 				customer.setPostCode(postCode);
 				
 				list.add(customer);
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

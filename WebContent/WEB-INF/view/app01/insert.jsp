@@ -13,7 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<my:navBar current="list" />
+	<my:navBar current="insert"></my:navBar>
 	<!-- .container>.row>.col>h1{글 작성} -->
 	<div class="container">
 		<div class="row">
@@ -38,3 +38,13 @@
 	</div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+

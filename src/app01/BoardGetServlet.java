@@ -51,11 +51,11 @@ public class BoardGetServlet extends HttpServlet {
 		// bussines logic
 		try (Connection con = ds.getConnection()) {
 			
-			//게시글 본문 가져오는코드
+			// 게시글 본문
 			BoardDao dao = new BoardDao();
 			BoardDto board = dao.get(con, id);
 			
-			//댓글 목록 가져오는코드
+			// 댓글 목록
 			ReplyDao replyDao = new ReplyDao();
 			List<ReplyDto> replyList = replyDao.list(con, id);
 			

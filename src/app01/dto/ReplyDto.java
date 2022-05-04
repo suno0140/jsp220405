@@ -7,7 +7,7 @@ public class ReplyDto {
 	private int boardId;
 	private String content;
 	private LocalDateTime inserted;
-	
+
 	public String getPrettyInserted() {
 		// 24시간 이내면 시간만
 		// 이전이면 년-월-일

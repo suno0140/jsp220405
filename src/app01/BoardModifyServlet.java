@@ -20,7 +20,7 @@ import app01.dto.BoardDto;
 @WebServlet("/board/modify")
 public class BoardModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private DataSource ds;
+    private DataSource ds;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -48,21 +48,20 @@ public class BoardModifyServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//request parameter 가공
+		// request parameter 가공
 		String title = request.getParameter("title");
 		String body = request.getParameter("body");
 		String idStr = request.getParameter("id");
 		int id = Integer.parseInt(idStr);
-		
+
 		BoardDto board = new BoardDto();
 		board.setId(id);
 		board.setTitle(title);
 		board.setBody(body);
 		
-		//비지니스 로직처리
+		// 비지니스 로직 처리
 		BoardDao dao = new BoardDao();
 		boolean success = false;
-		
 		try (Connection con = ds.getConnection()) {
 			success = dao.modify(con, board);
 			
@@ -71,16 +70,30 @@ public class BoardModifyServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		//결과 attribute 넣고 (여기선 생략)
+		// 결과 attribute 넣고
 		
-		//forward/redirect
+		// forward / redirect
 		String location = request.getContextPath() + "/board/get?id=" + id;
 		if (success) {
 			location += "&success=true";
 		} else {
 			location += "&success=false";
 		}
+		
 		response.sendRedirect(location);
+		
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
